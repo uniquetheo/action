@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import styled from "styled-components";
-import { StyledForm, StyledFormWrapper, } from "../Form/Form.styles";
+import { StyledForm, StyledFormWrapper } from "../Form/Form.styles";
 import { StyledButton } from "../Button/Button.styles";
 
 export const Register = () => {
@@ -8,6 +8,9 @@ export const Register = () => {
     <Main>
       <StyledFormWrapper>
         <StyledForm1>
+          <Logo>
+            <img src="/assets/tp_nic_logo.png" alt="logo" />
+          </Logo>
           <h2>Register a student for the Quiz</h2>
           <span>Add student's details below</span>
           <label htmlFor="fullname">Full Name</label>
@@ -67,5 +70,16 @@ const StyledForm1 = styled(StyledForm)`
         color: #ccc;
       }
     }
+  }
+`;
+
+const Logo = styled.div`
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+
+  img {
+    width: 100px;
+    height: auto;
   }
 `;
