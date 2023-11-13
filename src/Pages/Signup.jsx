@@ -26,10 +26,7 @@ export const SignUp = () => {
     "Confirm Password",
   ];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(data);
-  };
+  
 
   return (
     <div className="w-full flex h-screen overflow-hidden">
