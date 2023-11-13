@@ -15,6 +15,11 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    for (const key in data) {
+      if (data[key].trim() === "") {
+        return;
+      }
+    }
     console.log(data);
   }
 
@@ -34,18 +39,20 @@ export const Login = () => {
           <div className="grid grid-cols-1 gap-6 mt-8">
             {labels.map((label) => {
               return (
-                <Input
-                  key={label}
-                  name={label.toLowerCase()}
-                  label={label}
-                  data={data}
-                  setData={setData}
-                  type={
-                    label.toLowerCase().includes("password")
-                      ? "password"
-                      : "text"
-                  }
-                />
+                  <>
+                    <Input
+                      key={label}
+                      name={label.toLowerCase()}
+                      label={label}
+                      data={data}
+                      setData={setData}
+                      type={
+                        label.toLowerCase().includes("password")
+                          ? "password"
+                          : "text"
+                      }
+                    />
+                  </>
               );
             })}
 
