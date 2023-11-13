@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Form } from "./Form/Form.styles";
+import { Form } from "../Form/Form.styles";
 
-export const Signup = () => {
+export const SignupOld = () => {
   return (
     <Container>
         <Form />

@@ -3,9 +3,8 @@ import styled from "styled-components";
 import {
   StyledForm,
   StyledFormWrapper,
-  SharedStyles,
-} from "./Form/Form.styles";
-import { StyledButton } from "./Button/Button.styles";
+} from "../Form/Form.styles";
+import { StyledButton } from "../Button/Button.styles";
 
 export const Login = () => {
   return (
@@ -39,7 +38,13 @@ const Container = styled.div`
   background-color: #f9f9f9;
 `;
 
-const StyledForm1 = styled(StyledForm)``;
+const StyledForm1 = styled(StyledForm)`
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+`;
 
 const Remember = styled.div`
   display: flex;
