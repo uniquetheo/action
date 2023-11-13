@@ -1,73 +1,63 @@
-/* eslint-disable react/no-unescaped-entities */
-import styled from "styled-components";
-import {
-  StyledForm,
-  StyledFormWrapper,
-} from "../Form/Form.styles";
-import { StyledButton } from "../Button/Button.styles";
+import Lottie from "lottie-react";
+import loginAnimation from "../../assets/lottie/lottieLogin.json";
+import logo from "../../assets/nic_logo_transparent.png";
+import { useState } from "react";
+import Input from "../commons/Input.jsx";
+import { StyledButton } from "../Button/Button.styles.jsx";
 
 export const Login = () => {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const labels = ["Email", "Password"];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(data);
+  }
+
   return (
-    <Container>
-      <StyledFormWrapper>
-        <StyledForm1>
-          <h2>Sign in</h2>
-          <span>Fill the below form with guardian's information</span>
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" />
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" />
-          <Remember>
-            <input type="checkbox" id="check" />
-            <label htmlFor="check">Remember me</label>
-          </Remember>
-          <StyledButton>Sign in</StyledButton>
-          <ForgotPass>
-            <a href="/signup">Don't have an account?</a>
-            <a href="/">Forgot password?</a>
-          </ForgotPass>
-        </StyledForm1>
-      </StyledFormWrapper>
-    </Container>
+    <div className="w-full flex h-screen overflow-hidden">
+      <div className="w-[50%] h-full bg-gray-100 flex justify-center ">
+        <Lottie animationData={loginAnimation} />
+      </div>
+      <div className="w-[50%] flex flex-col items-center justify-center px-10 gap-10 shadow-md">
+        <div className="w-40 h-40 overflow-hidden">
+          <img src={logo} alt="" className="w-full h-full object-cover" />
+        </div>
+        <form onSubmit={handleSubmit} className=" w-full">
+          <h1 className="text-center text-2xl">
+            Please enter school login details
+          </h1>
+          <div className="grid grid-cols-1 gap-6 mt-8">
+            {labels.map((label) => {
+              return (
+                <Input
+                  key={label}
+                  name={label.toLowerCase()}
+                  label={label}
+                  data={data}
+                  setData={setData}
+                  type={
+                    label.toLowerCase().includes("password")
+                      ? "password"
+                      : "text"
+                  }
+                />
+              );
+            })}
+
+
+          </div>
+          <StyledButton type="submit" className="w-full mt-10" >Login</StyledButton>
+          <h4 className="text-center mt-4">
+            Don't have an account?
+            <a href="/signup" className="text-blue-500 cursor-pointer "> Sign Up</a>
+          </h4>
+        </form>
+      </div>
+    </div>
   );
 };
-
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-color: #f9f9f9;
-`;
-
-const StyledForm1 = styled(StyledForm)`
-  h2 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-`;
-
-const Remember = styled.div`
-  display: flex;
-  gap: 10px;
-
-  input {
-    width: 15px;
-    background-color: #009379;
-  }
-`;
-
-const ForgotPass = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  margin-top: 20px;
-
-  a {
-    text-decoration: none;
-    color: #000;
-    font-size: 14px;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
