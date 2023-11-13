@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import styled from "styled-components";
-import { StyledForm, StyledFormWrapper } from "../Form/Form.styles";
-import { StyledButton } from "../Button/Button.styles";
+import { StyledForm, StyledFormWrapper } from "../Components/Form/Form.styles.jsx";
+import { StyledButton } from "../Components/Button/Button.styles.jsx";
 
 export const Register = () => {
   return (

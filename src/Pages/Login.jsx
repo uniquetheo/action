@@ -1,9 +1,9 @@
 import Lottie from "lottie-react";
-import loginAnimation from "../../assets/lottie/lottieLogin.json";
-import logo from "../../assets/nic_logo_transparent.png";
+import loginAnimation from "../assets/lottie/lottieLogin.json";
+import logo from "../assets/nic_logo_transparent.png";
 import { useState } from "react";
-import Input from "../commons/Input.jsx";
-import { StyledButton } from "../Button/Button.styles.jsx";
+import Input from "../Components/commons/Input.jsx";
+import { StyledButton } from "../Components/Button/Button.styles.jsx";
 
 export const Login = () => {
   const [data, setData] = useState({
@@ -54,7 +54,7 @@ export const Login = () => {
           <StyledButton type="submit" className="w-full mt-10" >Login</StyledButton>
           <h4 className="text-center mt-4">
             Don't have an account?
-            <a href="/signup" className="text-blue-500 cursor-pointer "> Sign Up</a>
+            <a href="/src/Pages/Signup" className="text-blue-500 cursor-pointer "> Sign Up</a>
           </h4>
         </form>
       </div>
