@@ -4,6 +4,7 @@ import logo from "../assets/nic_logo_transparent.png";
 import { useState } from "react";
 import Input from "../Components/commons/Input.jsx";
 import { StyledButton } from "../Components/Button/Button.styles.jsx";
+import {validateFields} from "../utils/helpers.js";
 
 export const SignUp = () => {
   const [data, setData] = useState({
@@ -15,18 +16,21 @@ export const SignUp = () => {
     password: "",
     "confirm password": "",
   });
+  const [isError, setIsError] = useState({
+    name: false,
+    email: false,
+    region: false,
+    city: false,
+    address: false,
+    password: false,
+    "confirm password": false,
+  });
 
-  const labels = [
-    "Name",
-    "Email",
-    "Region",
-    "City",
-    "Address",
-    "Password",
-    "Confirm Password",
-  ];
-
-  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isFormValid = validateFields(data, setIsError);
+    console.log(data);
+  };
 
   return (
     <div className="w-full flex h-screen overflow-hidden">
@@ -48,6 +52,8 @@ export const SignUp = () => {
                   label={label}
                   data={data}
                   setData={setData}
+                  isError={isError}
+                  setIsError={setIsError}
                   type={
                     label.toLowerCase().includes("password")
                       ? "password"
@@ -58,13 +64,28 @@ export const SignUp = () => {
             })}
           </div>
 
-          <StyledButton type="submit" className="w-full mt-10" >Sign Up</StyledButton>
+          <StyledButton type="submit" className="w-full mt-10">
+            Sign Up
+          </StyledButton>
           <h4 className="text-center mt-4">
             Already have an account?
-            <a href="/" className="text-blue-500 cursor-pointer "> Sign In</a>
+            <a href="/" className="text-blue-500 cursor-pointer ">
+              {" "}
+              Sign In
+            </a>
           </h4>
         </form>
       </div>
     </div>
   );
 };
+
+const labels = [
+  "Name",
+  "Email",
+  "Region",
+  "City",
+  "Address",
+  "Password",
+  "Confirm Password",
+];

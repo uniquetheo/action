@@ -12,7 +12,7 @@ export const StyledButton = styled.button`
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   &:hover {
     background-color: ${(props) =>
       props.variant !== "outline" ? "#E5F4F2" : "#3285EF"};
