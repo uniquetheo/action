@@ -10,6 +10,10 @@ export const Login = () => {
     email: "",
     password: "",
   });
+  const [isError, setIsError] = useState({
+    email: false,
+    password: false,
+  });
 
   const labels = ["Email", "Password"];
 
@@ -17,11 +21,24 @@ export const Login = () => {
     e.preventDefault();
     for (const key in data) {
       if (data[key].trim() === "") {
-        return;
+        setIsError((prev) => {
+          return {
+            ...prev,
+            [key]: true,
+          };
+        });
+        // return;
       }
     }
+    console.log(isError);
+    // setIsError(prev => {
+    //   return {
+    //     ...prev,
+    //     key: false
+    //   }
+    // });
     console.log(data);
-  }
+  };
 
   return (
     <div className="w-full flex h-screen overflow-hidden">
@@ -39,29 +56,37 @@ export const Login = () => {
           <div className="grid grid-cols-1 gap-6 mt-8">
             {labels.map((label) => {
               return (
-                  <>
-                    <Input
-                      key={label}
-                      name={label.toLowerCase()}
-                      label={label}
-                      data={data}
-                      setData={setData}
-                      type={
-                        label.toLowerCase().includes("password")
-                          ? "password"
-                          : "text"
-                      }
-                    />
-                  </>
+                <>
+                  <Input
+                    key={label}
+                    name={label.toLowerCase()}
+                    label={label}
+                    data={data}
+                    setData={setData}
+                    isError={isError}
+                    setIsError={setIsError}
+                    type={
+                      label.toLowerCase().includes("password")
+                        ? "password"
+                        : "text"
+                    }
+                  />
+                </>
               );
             })}
-
-
           </div>
-          <StyledButton type="submit" className="w-full mt-10" >Login</StyledButton>
+          <StyledButton type="submit" className="w-full mt-10">
+            Login
+          </StyledButton>
           <h4 className="text-center mt-4">
             Don't have an account?
-            <a href="/src/Pages/Signup" className="text-blue-500 cursor-pointer "> Sign Up</a>
+            <a
+              href="/src/Pages/Signup"
+              className="text-blue-500 cursor-pointer "
+            >
+              {" "}
+              Sign Up
+            </a>
           </h4>
         </form>
       </div>
