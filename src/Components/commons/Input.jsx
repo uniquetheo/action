@@ -2,6 +2,8 @@ import { useState } from "react";
 
 const Input = ({ label, data, setData, isError, setIsError, ...rest }) => {
   const [isFocused, setIsFocused] = useState(false);
+
+  const objectKey = label === "Confirm Password" ? "confirmPassword" : label.toLowerCase();
   const handleFocus = () => {
     setIsFocused(true);
   };
@@ -17,20 +19,20 @@ const Input = ({ label, data, setData, isError, setIsError, ...rest }) => {
       setIsError((prev) => {
         return {
           ...prev,
-          [e.target.name]: true,
+          [objectKey]: true,
         };
       });
     } else {
       setIsError((prev) => {
         return {
           ...prev,
-          [e.target.name]: false,
+          [objectKey]: false,
         };
       });
     }
     setData({
       ...data,
-      [e.target.name]: e.target.value,
+      [objectKey]: e.target.value,
     });
   };
 
@@ -38,26 +40,26 @@ const Input = ({ label, data, setData, isError, setIsError, ...rest }) => {
     <div>
       <div
         className={`w-full relative h-10 px-3 ${
-          isFocused || isError[label.toLowerCase()] ? "border-2 border-blue-500 rounded-md" : "border-b-2"
-        } ${isError[label.toLowerCase()] && "border-red-500"}`}
+          isFocused || isError[objectKey] ? "border-2 border-blue-500 rounded-md" : "border-b-2"
+        } ${isError[objectKey] && "border-red-500"}`}
       >
         <span
           className={`absolute text-gray-400 transition duration-300 ease-linear ${
-            isFocused || isError[label.toLowerCase()] ? "-translate-y-[10px] bg-white text-sm" : "bottom-3"
+            isFocused || isError[objectKey] ? "-translate-y-[10px] bg-white text-sm" : "bottom-3"
           }`}
         >
           {label}
         </span>
         <input
           {...rest}
-          value={data[label.toLowerCase()]}
+          value={data[objectKey]}
           className="bg-transparent absolute inset-0 focus:outline-0 px-3"
           onFocus={handleFocus}
           onBlur={handelBlur}
           onChange={handleChange}
         />
       </div>
-      {isError[label.toLowerCase()] && (
+      {isError[objectKey] && (
         <p className="text-sm text-red-500">
           {label} field cannot be empty
         </p>

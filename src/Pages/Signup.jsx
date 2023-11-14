@@ -1,10 +1,11 @@
 import Lottie from "lottie-react";
 import loginAnimation from "../assets/lottie/lottieLogin.json";
 import logo from "../assets/nic_logo_transparent.png";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import Input from "../Components/commons/Input.jsx";
 import { StyledButton } from "../Components/Button/Button.styles.jsx";
 import {validateFields} from "../utils/helpers.js";
+import authApi from "../utils/authApi.js";
 
 export const SignUp = () => {
   const [data, setData] = useState({
@@ -14,7 +15,7 @@ export const SignUp = () => {
     city: "",
     address: "",
     password: "",
-    "confirm password": "",
+    confirmPassword: "",
   });
   const [isError, setIsError] = useState({
     name: false,
@@ -23,12 +24,17 @@ export const SignUp = () => {
     city: false,
     address: false,
     password: false,
-    "confirm password": false,
+    confirmPassword: false,
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(import.meta.env.VITE_API_URL_LOCAL);
     const isFormValid = validateFields(data, setIsError);
+    if (!isFormValid) return;
+
+    const response = await authApi.post("/register", data);
+    console.log(response)
     console.log(data);
   };
 
