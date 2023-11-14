@@ -15,6 +15,7 @@ export const SignUp = () => {
     password: "",
     "confirm password": "",
   });
+  const [isError, setIsError] = useState(false);
 
   const labels = [
     "Name",
@@ -26,7 +27,10 @@ export const SignUp = () => {
     "Confirm Password",
   ];
 
-  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(data);
+  };
 
   return (
     <div className="w-full flex h-screen overflow-hidden">
@@ -48,6 +52,8 @@ export const SignUp = () => {
                   label={label}
                   data={data}
                   setData={setData}
+                  isError={isError}
+                  setIsError={setIsError}
                   type={
                     label.toLowerCase().includes("password")
                       ? "password"
@@ -58,10 +64,15 @@ export const SignUp = () => {
             })}
           </div>
 
-          <StyledButton type="submit" className="w-full mt-10" >Sign Up</StyledButton>
+          <StyledButton type="submit" className="w-full mt-10">
+            Sign Up
+          </StyledButton>
           <h4 className="text-center mt-4">
             Already have an account?
-            <a href="/" className="text-blue-500 cursor-pointer "> Sign In</a>
+            <a href="/" className="text-blue-500 cursor-pointer ">
+              {" "}
+              Sign In
+            </a>
           </h4>
         </form>
       </div>
