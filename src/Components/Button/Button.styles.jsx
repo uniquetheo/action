@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledButton = styled.button`
   border: none;
   background-color: ${(props) =>
-    props.variant === "outline" ? "#E5F4F2" : "#3285EF"};
+    props.variant === "outline" ? "#c8daf1" : "#3285EF"};
   color: ${(props) => (props.variant === "outline" ? "#3285EF" : "#fff")};
   padding: 10px 32px;
   border-radius: 5px;
@@ -15,8 +15,8 @@ export const StyledButton = styled.button`
   transition: all 0.3s ease-in-out;
   &:hover {
     background-color: ${(props) =>
-      props.variant !== "outline" ? "#E5F4F2" : "#3285EF"};
-    color: ${(props) => (props.variant !== "outline" ? "#3285EF" : "#fff")};
+      props.variant !== "outline" ? "#609eef" : "#3285EF"};
+    color: ${(props) => (props.variant !== "outline" ? "#fff" : "#fff")};
   }
 `;
 

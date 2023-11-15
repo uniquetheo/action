@@ -1,10 +1,11 @@
 import Lottie from "lottie-react";
-import loginAnimation from "../assets/lottie/lottieLogin.json";
+// import loginAnimation from "../assets/lottie/lottieLogin.json";
+import SignupAnimation from "../assets/lottie/lottieSignup.json";
 import logo from "../assets/nic_logo_transparent.png";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Input from "../Components/commons/Input.jsx";
 import { StyledButton } from "../Components/Button/Button.styles.jsx";
-import {validateFields} from "../utils/helpers.js";
+import { validateFields } from "../utils/helpers.js";
 import authApi from "../utils/authApi.js";
 
 export const SignUp = () => {
@@ -34,14 +35,16 @@ export const SignUp = () => {
     if (!isFormValid) return;
 
     const response = await authApi.post("/register", data);
-    console.log(response)
+    console.log(response);
     console.log(data);
   };
 
   return (
     <div className="w-full flex h-screen overflow-hidden">
-      <div className="w-[50%] h-full bg-gray-100 flex justify-center ">
-        <Lottie animationData={loginAnimation} />
+      <div className="w-[50%] h-full bg-gray-100  flex justify-center items-center ">
+        <div className="w-[70%] h-[70%]">
+          <Lottie animationData={SignupAnimation} />
+        </div>
       </div>
       <div className="w-[50%] flex flex-col items-center justify-center px-10 gap-10 shadow-md ">
         <div className="w-40 h-40 overflow-hidden">
