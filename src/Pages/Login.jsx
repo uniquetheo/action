@@ -6,8 +6,11 @@ import Input from "../Components/commons/Input.jsx";
 import { StyledButton } from "../Components/Button/Button.styles.jsx";
 import {validateFields} from "../utils/helpers.js";
 import {Link} from "react-router-dom";
+import authApi from "../utils/authApi.js";
+import Notification from "../Components/commons/Notification.jsx";
 
 export const Login = () => {
+  const [show, setShow] = useState(false);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -19,14 +22,20 @@ export const Login = () => {
 
   const labels = ["Email", "Password"];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setShow(!show)
     const isFormValid = validateFields(data, setIsError);
-    console.log("isFormFilled:::", isFormValid);
+
+    if (!isFormValid) return;
+
+    const response = await authApi.post("/login", data);
+    console.log(response)
   };
 
   return (
     <div className="w-full flex h-screen overflow-hidden">
+      <Notification message="Login failed try again later" show={show} />
       <div className="w-[60%] h-full bg-gray-100 flex justify-center ">
         <Lottie animationData={loginAnimation} />
       </div>
