@@ -5,12 +5,16 @@ import {useEffect, useState} from "react";
 import Input from "../Components/commons/Input.jsx";
 import { StyledButton } from "../Components/Button/Button.styles.jsx";
 import {validateFields} from "../utils/helpers.js";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import authApi from "../utils/authApi.js";
 import Notification from "../Components/commons/Notification.jsx";
+import Spinner from "../Components/commons/Spinner.jsx";
 
 export const Login = () => {
-  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [notifType, setNotifType] = useState('');
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -24,18 +28,40 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setShow(!show)
     const isFormValid = validateFields(data, setIsError);
 
     if (!isFormValid) return;
 
-    const response = await authApi.post("/login", data);
-    console.log(response)
+    try {
+
+      setIsLoading(true);
+      const response = await authApi.post("/login", data);
+        if (response.status === 200) {
+              setNotifType('success');
+              setMessage(response.data.msg)
+          setTimeout(() => {
+              setMessage('')
+              setTimeout(() => {
+                  navigate('/dashboard')
+              }, 500);
+          }, 2000);
+        }
+
+    } catch (error) {
+      console.log(error.response.data.msg);
+        setNotifType('error');
+        setMessage(error.response.data.msg)
+      setTimeout(() => {
+        setNotifType('');
+        setMessage('')
+      }, 2000);
+    }
+    setIsLoading(false);
   };
 
   return (
     <div className="w-full flex h-screen overflow-hidden">
-      <Notification message="Login failed try again later" show={show} />
+      <Notification message={message} type={notifType} show={!!message} />
       <div className="w-[60%] h-full bg-gray-100 flex justify-center ">
         <Lottie animationData={loginAnimation} />
       </div>
@@ -68,7 +94,8 @@ export const Login = () => {
             })}
           </div>
           <StyledButton type="submit" className="w-full mt-10">
-            Login
+            {isLoading && <Spinner/>}
+            {isLoading ? "Loading..." : "Login"}
           </StyledButton>
           <h4 className="text-center mt-4">
             Don't have an account?

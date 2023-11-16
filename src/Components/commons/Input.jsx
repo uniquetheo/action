@@ -45,7 +45,7 @@ const Input = ({ label, data, setData, isError, setIsError, ...rest }) => {
       >
         <span
           className={`absolute text-gray-400 transition duration-300 ease-linear ${
-            isFocused || isError[objectKey] ? "-translate-y-[10px] bg-white text-sm" : "bottom-3"
+            isFocused || isError[objectKey] ? "-translate-y-[10px] bg-white text-sm z-10" : "bottom-3"
           }`}
         >
           {label}
