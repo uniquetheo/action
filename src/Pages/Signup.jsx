@@ -41,12 +41,12 @@ export const SignUp = () => {
 
   return (
     <div className="w-full flex h-screen overflow-hidden">
-      <div className="w-[50%] h-full bg-gray-100  flex justify-center items-center ">
-        <div className="w-[70%] h-[70%]">
+      <div className="w-[60%] h-full bg-gray-100  flex justify-center items-center ">
+        <div className="w-[60%] h-[60%]">
           <Lottie animationData={SignupAnimation} />
         </div>
       </div>
-      <div className="w-[50%] flex flex-col items-center justify-center px-10 gap-10 shadow-md ">
+      <div className="w-[40%] flex flex-col items-center justify-center px-10 gap-10 shadow-md ">
         <div className="w-40 h-40 overflow-hidden">
           <img src={logo} alt="" className="w-full h-full object-cover" />
         </div>

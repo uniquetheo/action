@@ -42,15 +42,14 @@ export const Login = () => {
           setTimeout(() => {
               setMessage('')
               setTimeout(() => {
-                  navigate('/dashboard')
+                  navigate('/typing-test')
               }, 500);
           }, 2000);
         }
 
     } catch (error) {
-      console.log(error.response.data.msg);
         setNotifType('error');
-        setMessage(error.response.data.msg)
+        setMessage(error.response.data.msg || "Something went wrong")
       setTimeout(() => {
         setNotifType('');
         setMessage('')

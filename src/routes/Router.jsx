@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     {path: '/signup', element: <SignUp />},
     {path: '/register', element: <Register />},
     {
-        path: '/dashboard',
+        path: '/typing-test',
         element: <ProtectedDashboard>
                     <Dashboard />
                 </ProtectedDashboard>
